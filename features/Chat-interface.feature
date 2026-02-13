@@ -3,11 +3,11 @@ Feature: Login and Marta chat
 
 	Scenario: Marta chat interface - visual regression
 		Given I am on the login page
-		And I enter access key "TnGvr9Db3BQajawE"
+		And I enter access key ""
 		And I click the submit button
 		And I click the login button
-		And I enter username "robin+qa-case-study-cristina@everai.ai"
-		And I enter password "eyr5apu3acm6XJQ"
+		And I enter username ""
+		And I enter password ""
 		And I click the Sign in button
 		When I click the icon labeled "Marta"
 		And I accept only necessary cookies
@@ -18,11 +18,11 @@ Feature: Login and Marta chat
 
 	Scenario: Token usage when specific prompts are used in chat
 		Given I am on the login page
-		And I enter access key "TnGvr9Db3BQajawE"
+		And I enter access key ""
 		And I click the submit button
 		And I click the login button
-		And I enter username "robin+qa-case-study-cristina@everai.ai"
-		And I enter password "eyr5apu3acm6XJQ"
+		And I enter username ""
+		And I enter password ""
 		And I click the Sign in button
 		When I click the icon labeled "Marta"
 		And I accept only necessary cookies

@@ -10,6 +10,10 @@ export class CustomWorld extends World {
   public browserManager!: BrowserManager;
   public testData: Record<string, any> = {};
 
+  public accessKey: string = process.env.ACCESS_KEY || '';
+  public username: string = process.env.USERNAME || '';
+  public password: string = process.env.PASSWORD || '';
+
   constructor(options: IWorldOptions) {
     super(options);
   }
