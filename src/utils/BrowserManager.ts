@@ -16,7 +16,7 @@ export class BrowserManager {
    */
   async launchBrowser(): Promise<void> {
     const browserType = process.env.BROWSER || 'chromium';
-    const headless = process.env.HEADLESS !== 'false';
+    const headless = process.env.HEADLESS === 'true';
 
     const launchOptions = {
       headless: headless,

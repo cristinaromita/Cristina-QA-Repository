@@ -60,7 +60,7 @@ After(async function ({ pickle, result }) {
   }
 
   // Close browser after each scenario unless user requested to keep it open on failure
-  const keepOpen = process.env.KEEP_OPEN_ON_FAILURE === 'true' || process.env.PWDEBUG === '1';
+  const keepOpen = process.env.KEEP_OPEN_ON_FAILURE === 'true';
   if (result?.status === Status.FAILED && keepOpen) {
     console.log('Scenario failed and KEEP_OPEN_ON_FAILURE is set — leaving browser open for debugging.');
     console.log('Press Enter to close browser and continue...');

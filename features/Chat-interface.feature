@@ -33,4 +33,3 @@ Feature: Login and Marta chat
 		And I clear the message input field
 		And I type "Show me" in the message input
 		And I capture and compare snapshot "chat-token-request"
-
