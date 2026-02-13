@@ -55,8 +55,4 @@ This repository contains end-to-end (E2E) tests for the Cristina chat interface 
 - Fork the repository and create a branch for your feature or bugfix.
 - Submit a pull request with a clear description.
 
-## License
-This project is licensed under the MIT License.
 
----
-For questions or support, open an issue on GitHub.
