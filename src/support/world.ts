@@ -11,7 +11,7 @@ export class CustomWorld extends World {
   public testData: Record<string, any> = {};
 
   public accessKey: string = process.env.ACCESS_KEY || '';
-  public username: string = process.env.USERNAME || '';
+  public username: string = process.env.APP_USERNAME || '';
   public password: string = process.env.PASSWORD || '';
 
   constructor(options: IWorldOptions) {

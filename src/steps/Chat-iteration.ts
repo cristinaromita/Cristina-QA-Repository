@@ -16,14 +16,20 @@ Given('I am on the login page', async function (this: CustomWorld) {
 });
 
 Given('I enter username {string}', async function (this: CustomWorld, username: string) {
-  const user = username && username.trim() !== '' ? username : this.username;
+  const user = (username && username.trim() !== '') ? username : this.username;
+  console.log('Username from env:', this.username);
+  console.log('Username parameter:', username);
+  console.log('Username used:', user);
   await this.page.click('#user_email');
   await this.page.fill('#user_email', user);
   console.log(`Entered username: ${user}`);
 });
 
 Given('I enter password {string}', async function (this: CustomWorld, password: string) {
-  const pwd = password && password.trim() !== '' ? password : this.password;
+  const pwd = (password && password.trim() !== '') ? password : this.password;
+  console.log('Password from env:', this.password);
+  console.log('Password parameter:', password);
+  console.log('Password used:', pwd);
   try {
     await this.page.fill('#user_password', pwd);
   } catch (e) {
@@ -37,7 +43,10 @@ Given('I enter password {string}', async function (this: CustomWorld, password: 
 });
 
 Given('I enter access key {string}', async function (this: CustomWorld, accessKey: string) {
-  const key = accessKey && accessKey.trim() !== '' ? accessKey : this.accessKey;
+  const key = (accessKey && accessKey.trim() !== '') ? accessKey : this.accessKey;
+  console.log('Access key from env:', this.accessKey);
+  console.log('Access key parameter:', accessKey);
+  console.log('Access key used:', key);
   await this.page.click('#stage_access_key');
   await this.page.fill('#stage_access_key', key);
   console.log(`Entered access key: ${key}`);
