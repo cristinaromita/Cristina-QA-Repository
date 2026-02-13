@@ -1,0 +1,121 @@
+image: mcr.microsoft.com/playwright:v1.42.1-jammy
+
+# Define stages
+stages:
+  - install
+  - test
+  - report
+
+# Cache node modules
+cache:
+  paths:
+    - node_modules/
+    - playwright-report/
+    - reports/
+
+# Install dependencies
+install_dependencies:
+  stage: install
+  script:
+    - npm ci
+    - npx playwright install
+  artifacts:
+    paths:
+      - node_modules/
+    expire_in: 1 hour
+
+# Run E2E tests
+e2e_tests:
+  stage: test
+  dependencies:
+    - install_dependencies
+  script:
+    - npm run test
+  artifacts:
+    when: always
+    paths:
+      - reports/
+      - playwright-report/
+    reports:
+      junit: reports/cucumber-report.xml
+    expire_in: 30 days
+  allow_failure: false
+
+# Run tests on Chrome
+e2e_tests_chrome:
+  stage: test
+  dependencies:
+    - install_dependencies
+  script:
+    - BROWSER=chromium npm run test
+  artifacts:
+    when: always
+    paths:
+      - reports/
+    expire_in: 7 days
+  only:
+    - schedules
+    - merge_requests
+
+# Run tests on Firefox
+e2e_tests_firefox:
+  stage: test
+  dependencies:
+    - install_dependencies
+  script:
+    - BROWSER=firefox npm run test
+  artifacts:
+    when: always
+    paths:
+      - reports/
+    expire_in: 7 days
+  only:
+    - schedules
+  allow_failure: true
+
+# Generate and publish reports
+generate_report:
+  stage: report
+  dependencies:
+    - e2e_tests
+  script:
+    - npm run report
+    - echo "Test reports are available in the artifacts"
+  artifacts:
+    when: always
+    paths:
+      - reports/cucumber-html-report.html
+      - reports/screenshots/
+      - reports/videos/
+    expire_in: 30 days
+
+# Run smoke tests only
+smoke_tests:
+  stage: test
+  dependencies:
+    - install_dependencies
+  script:
+    - npm run test:tag @smoke
+  only:
+    - merge_requests
+  artifacts:
+    when: always
+    paths:
+      - reports/
+    expire_in: 7 days
+
+# Schedule for nightly runs
+nightly_tests:
+  stage: test
+  dependencies:
+    - install_dependencies
+  script:
+    - npm run test
+  only:
+    - schedules
+  artifacts:
+    when: always
+    paths:
+      - reports/
+      - playwright-report/
+    expire_in: 30 days
