@@ -12,11 +12,6 @@ import { CustomWorld } from '../src/support/world';
 Given('I am on the login page', async function (this: CustomWorld) {
   // Navigate directly to the specified login URL
   await this.page.goto('https://fcedgmdaekj-olcffeha-pr-4350-44d7fc6b8a55.herokuapp.com/');
-
-  // Store default credentials for reuse
-  this.setTestData('username', 'robin+qa-case-study-cristina@everai.ai');
-  this.setTestData('password', 'eyr5apu3acm6XJQ');
-  this.setTestData('accessKey', '');
 });
 
 // When steps
